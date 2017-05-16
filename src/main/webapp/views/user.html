@@ -1,0 +1,25 @@
+<div>
+	<h1>LISTAR USUARIOS</h1>
+
+	<a role="button" class="btn btn-default"> <i class="fa fa-plus"
+		aria-hidden="true"></i> Adicionar
+	</a>
+	<div style="clear: both; height: 10px;"></div>
+
+	<div class="alert alert-info" role="alert">Nenhum Usuário
+		Cadastrado.</div>
+	<table class="table table-striped table-hover table-bordered">
+		<tr>
+			<td>ID</td>
+			<td>Nome</td>
+			<td>Documento</td>
+			<td>E-mail</td>
+		</tr>
+		<tr>
+			<td>${user.id}</td>
+			<td>${user.name}</td>
+			<td>${user.document}</td>
+			<td>${user.email}</td>
+		</tr>
+	</table>
+</div>
