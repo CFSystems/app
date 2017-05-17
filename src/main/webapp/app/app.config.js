@@ -8,22 +8,22 @@ angular
 			templateUrl : "app/consumer/consumer.html",
 			controller : "consumerController"
 		}).when('/product', {
-			templateUrl : "views/product.html",
+			templateUrl : "app/product/product.html",
 			controller : "productController"
 		}).when('/paymentMethod', {
-			templateUrl : "views/paymentMethod.html",
+			templateUrl : "app/paymentMethod/paymentMethod.html",
 			controller : "paymentMethodController"
 		}).when('/user', {
-			templateUrl : "views/user.html",
+			templateUrl : "app/user/user.html",
 			controller : "userController"
 		}).when('/account', {
-			templateUrl : "views/account.html",
+			templateUrl : "app/account/account.html",
 			controller : "accountController"
 		}).when('/purchase', {
 			templateUrl : "views/purchase.html",
 			controller : "purchaseController"
 		}).when('/payment', {
-			templateUrl : "views/payment.html",
+			templateUrl : "app/payment/payment.html",
 			controller : "paymentController"
 		}).otherwise('/404', {
 			templateUrl : "templates/404.html"
