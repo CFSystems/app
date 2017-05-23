@@ -1,0 +1,147 @@
+<div ng-controller="purchaseController">
+	<h1>Cadastro de Usuários</h1>
+
+	<div class="row" style="margin-bottom: 15px;">
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#myModal" ng-click="addPurchase()">Adicionar</button>
+		</div>
+		<div class="col-sm-4 col-sm-offset-4">
+			<div class="input-group">
+				<span class="input-group-addon" id="search"><span
+					class="glyphicon glyphicon-search"></span></span> <input type="text"
+					class="form-control" placeholder="Procurar"
+					aria-describedby="search" ng-model="searchKey">
+			</div>
+		</div>
+	</div>
+
+	<div class="table-responsive">
+		<table class="table table-hover" id="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Conta</th>
+					<th>Usuário</th>
+					<th>Valor</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="purchase in listPurchases | filter:searchKey">
+					<td>{{purchase.id}}</td>
+					<td>{{purchase.account.id}}</td>
+					<td>{{purchase.user.name}}</td>
+					<td>{{purchase.value}}</td>
+					<td><a data-toggle="modal" data-target="#myModal"
+						ng-click="editPurchase(purchase)" title="Editar"
+						class="text-warning"><span class="glyphicon glyphicon-pencil"
+							aria-hidden="true"></span></a></td>
+					<td><a href="#/purchase" ng-click="deletePurchase(purchase)"
+						title="Excluir" class="text-danger"><span
+							class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+					<td><a data-toggle="modal" data-target="#modalProducts"
+						title="Detalhes" class="text-primary"><span
+							class="glyphicon glyphicon-file" aria-hidden="true"></span></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Novo Pedido</h4>
+				</div>
+				<form class="form-horizontal">
+					<div class="modal-body">
+						<input type="hidden" id="codigo" class="form-control"
+							ng-model="u.id" />
+						<div class="col-sm-6">
+							<div class="control-group">
+								<label for="codeAccount">Código da Conta</label> <input type="text" id="codeAccount"
+									class="form-control" ng-model="p" placeholder="Código da Conta" />
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="control-group">
+								<label for="document">Documento</label> <input type="text"
+									id="document" class="form-control" ng-model="u.document"
+									placeholder="Documento" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="phoneNumber">Número Telefone</label> <input
+								type="text" id="phoneNumber" class="form-control"
+								ng-model="u.phoneNumber" placeholder="Número Telefone" />
+						</div>
+						<div class="control-group">
+							<label for="email">E-mail</label> <input type="text" id="email"
+								class="form-control" ng-model="u.email" placeholder="E-mail" />
+						</div>
+						<div class="control-group">
+							<label for="password">Senha</label> <input type="password"
+								id="password" class="form-control" ng-model="u.password"
+								placeholder="Senha" />
+						</div>
+						<div class="control-group">
+							<label for="status">Status</label> <input type="text" id="status"
+								class="form-control" ng-model="u.status" placeholder="Status" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-success"
+							ng-click="savePurchase()">Salvar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalProducts" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Detalhes do Pedido</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<td>ID</td>
+								<td>Produto</td>
+								<td>Qtde</td>
+								<td>Valor Unitário</td>
+								<td>Valor Total</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="p in listPurchases | filter:searchKey">
+								<td>{{p.purchaseProduct.id}}</td>
+								<td>{{p.purchaseProduct.product.name}}</td>
+								<td>{{p.purchaseProduct.quantity}}</td>
+								<td>{{p.purchaseProduct.unitaryValue}}</td>
+								<td>{{p.purchaseProduct.amount}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$('.modal').on('hidden.bs.modal', function(){
+	    	$(this).find('form')[0].reset();
+		});
+	</script>
+</div>
+
+
+
